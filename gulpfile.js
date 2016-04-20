@@ -15,9 +15,9 @@ var watch = require('gulp-watch');
 
 //paths
 const DIST_PATH = "public/dist/";
-const STYLE_PATH = "style/**/*.scss";
+const STYLE_PATH = "src/css/**/*.scss";
 
-gulp.task("default", ['styles', 'watch', 'webpack-dev-server']);
+gulp.task("default", ['styles', 'templates', 'watch', 'webpack-dev-server']);
 
 gulp.task("watch", function(){
   return gulp.watch([STYLE_PATH], ['styles']);
@@ -31,8 +31,14 @@ gulp.task("styles", function(){
         output:'compressed'
       }))
       .pipe(sourcemaps.write())
-      .pipe(gulp.dest(DIST_PATH + 'style/'));
+      .pipe(gulp.dest(DIST_PATH + 'css/'));
 });
+
+gulp.task('templates', function(){
+  console.log('moving templates');
+  return gulp.src('src/components/**/*.html')
+    .pipe(gulp.dest(DIST_PATH+'views/'));
+})
 
 gulp.task("webpack-dev-server", function(callback) {
 	// modify some webpack config options

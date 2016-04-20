@@ -1,3 +1,7 @@
 import angular from 'angular';
+import Config from './config';
+import uirouter from 'angular-ui-router';
+import home from './components/home';
 
-console.log(angular); 
+angular.module('App', [uirouter, home])
+    .config(Config);
