@@ -2,7 +2,10 @@
   <h1>And...</h1>
 </header>
 <section>
-  <p>
+  <p ng-click="homeCtrl.changeName('Derp')">
     Hello {{homeCtrl.name}}!
   </p>
+  <div>
+    <input ng-model="homeCtrl.name" type="text" />
+  </div>
 </section>

@@ -16,11 +16,13 @@ var watch = require('gulp-watch');
 //paths
 const DIST_PATH = "public/dist/";
 const STYLE_PATH = "src/css/**/*.scss";
+const TEMPLATES_PATH = 'src/components/**/*.html';
 
 gulp.task("default", ['styles', 'templates', 'watch', 'webpack-dev-server']);
 
 gulp.task("watch", function(){
-  return gulp.watch([STYLE_PATH], ['styles']);
+  gulp.watch([STYLE_PATH], ['styles']);
+  gulp.watch([TEMPLATES_PATH], ['templates'] );
 });
 
 gulp.task("styles", function(){
@@ -36,7 +38,7 @@ gulp.task("styles", function(){
 
 gulp.task('templates', function(){
   console.log('moving templates');
-  return gulp.src('src/components/**/*.html')
+  return gulp.src(TEMPLATES_PATH)
     .pipe(gulp.dest(DIST_PATH+'views/'));
 })
 
